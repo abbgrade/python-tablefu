@@ -1,6 +1,12 @@
 #! /usr/bin/env python
 
-from distutils.core import setup
+import sys
+try:
+    from setuptools import setup, find_packages
+except ImportError:
+    import distribute_setup
+    distribute_setup.use_setuptools()
+    from setuptools import setup, find_packages
 
 long_description = open('README.markdown').read()
 
@@ -25,4 +31,7 @@ setup(
     install_requires=[
         'latimes-statestyle==0.1.2',
     ],
+    dependency_links=[
+	'https://github.com/datadesk/latimes-statestyle.git#latimes-statestyle==0.1.2'
+    ]
 )
